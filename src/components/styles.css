@@ -18,4 +18,9 @@
 
 .building-icon {
   width: 128px;
+  opacity: 0.5;
+}
+
+.building-icon.buildable {
+  opacity: 1.0;
 }
