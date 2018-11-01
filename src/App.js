@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Tile from "./components/Tile"
+
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {addResources} from './actions/resources-actions'
 
 class App extends Component {
+  onAddResources = () => {
+    this.props.onAddResources("stone", 3)
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,18 +20,25 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <button onClick={this.onAddResources}>Add Stone</button>
+          Stone: {this.props.resources.stone}
+          <Tile></Tile>
+          <Tile></Tile>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  resources: state.resources,
+  grid: state.grid
+})
+
+const mapActionsToProps = (dispatch, {id }) => {
+  return bindActionCreators({
+    onAddResources: addResources
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(App);
