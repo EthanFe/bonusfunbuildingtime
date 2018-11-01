@@ -6,8 +6,7 @@ class GridRow extends Component {
   render() {
     const tiles = []
     for (var x=0; x<this.props.width; x++) {
-      const building = this.props.buildings.find(building => building.position.x === x)
-      tiles.push(<Tile x={x} building={building} key={x}></Tile>)
+      tiles.push(<Tile x={x} y={this.props.y} key={x}></Tile>)
     }
 
     return (
@@ -18,11 +17,8 @@ class GridRow extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
-    buildings: state.buildings.filter(building => {
-      return building.position.y === props.y
-    }),
     width: state.dimensions.x
   }
 }

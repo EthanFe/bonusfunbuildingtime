@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {addResources} from '../actions/resources-actions'
 import {connect} from 'react-redux'
+import {buildingTypesByName} from '../data'
 
 class Tile extends Component {
   componentDidMount() {
@@ -27,32 +28,22 @@ class Tile extends Component {
   render() {
     let image = "grass"
     if (this.props.building) {
-      switch (this.props.building.type) {
-        case "lumber mill":
-          image = "mill"
-          break
-        case "mine":
-          image = "mine"
-          break
-        default:
-      }
+      image = buildingTypesByName[this.props.building.type].image + "_grass"
     }
     return <img className="tile" src={require(`../images/${image}.png`)} alt=""/>
   }
-
-  mapActionsToProps = (dispatch, props) => {
-    // onChangeColor: change.bind(this, props.id)
-    // onChangeSuze:
-    // onChangesome
-  }
 }
 
-const mapStatetoProps = () => {
-  return {}
+const mapStateToProps = (state, props) => {
+  return {
+    building: state.buildings.find(building => {
+      return building.position.y === props.y && building.position.x === props.x
+    })
+  }
 }
 
 const mapActionsToProps = {
   addResources: addResources
 }
 
-export default connect(mapStatetoProps, mapActionsToProps)(Tile);
+export default connect(mapStateToProps, mapActionsToProps)(Tile);
