@@ -6,13 +6,13 @@ import ResourceList from "./ResourceList"
 export default class MainView extends Component {
   render() {
     return (
-      [
-      <div className="grid-view">
-        <Grid/>
-        <BuildingList/>
-      </div>,
-      <ResourceList/>
-      ]
+      <div className="main-view">
+        <div className="grid-view">
+          <Grid/>
+          <BuildingList/>
+        </div>
+        <ResourceList/>
+      </div>
     )
   }
 }

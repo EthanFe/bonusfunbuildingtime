@@ -7,13 +7,12 @@ const rootReducer = combineReducers({
   dimensions: dimensionsReducer
 })
 
-function resourcesReducer(state = {}, { type, payload}) {
+function resourcesReducer(state = [], { type, payload}) {
   switch (type) {
     case ADD_RESOURCES:
-      return {
-        ...state, 
-        [payload.resourceType]: state[payload.resourceType] + payload.amount
-      }
+      const newState = [...state]
+      newState.find(resource => resource.type === payload.resourceType).amount += payload.amount
+      return newState
     default:
       return state
   }

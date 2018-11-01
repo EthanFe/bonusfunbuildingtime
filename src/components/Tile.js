@@ -1,6 +1,29 @@
 import React, { Component } from 'react';
+import {addResources} from '../actions/resources-actions'
+import {connect} from 'react-redux'
 
-export default class Tile extends Component {
+class Tile extends Component {
+  componentDidMount() {
+    if (this.props.building) {
+      this.startResourceTicks()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.building && this.props.building !== prevProps.building) {
+      this.startResourceTicks()
+    }
+  }
+
+  startResourceTicks = () => {
+    this.gatherInterval = setInterval(this.generateResource, 1000)
+    console.log(`beginning to gather from ${this.props.building.type}`)
+  }
+
+  generateResource = () => {
+    this.props.addResources("stone", 1)
+  }
+
   render() {
     let image = "grass"
     if (this.props.building) {
@@ -23,3 +46,13 @@ export default class Tile extends Component {
     // onChangesome
   }
 }
+
+const mapStatetoProps = () => {
+  
+}
+
+const mapActionsToProps = {
+  addResources: addResources
+}
+
+export default connect(mapStatetoProps, mapActionsToProps)(Tile);

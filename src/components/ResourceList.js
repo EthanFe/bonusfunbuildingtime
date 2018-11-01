@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import Resource from "./Resource"
+import {connect} from 'react-redux'
 
-export default class ResourceList extends Component {
+class ResourceList extends Component {
   render() {
-    return <p>resource list</p>
+    return (
+      <div className="resource-list">
+        {this.props.resources.map(resource => <Resource type={resource.type} amount={resource.amount}/>)}
+      </div>
+    )
   }
 }
+
+const mapStateToProps = state => ({
+  resources: state.resources
+})
+
+export default connect(mapStateToProps)(ResourceList);

@@ -9,9 +9,10 @@ import {Provider} from 'react-redux'
 import rootReducer from './reducers/reducers'
 
 const store = createStore(rootReducer, {
-  resources: {stone: 3, wood: 5},
+  resources: [{type: "stone", amount: 3}, {type: "wood", amount: 5}],
   buildings: [{position: {x: 1, y: 1}, type: "mine"},
-              {position: {x: 3, y: 4}, type: "lumber mill"}],
+              {position: {x: 3, y: 4}, type: "lumber mill"},
+              {position: {x: 5, y: 2}, type: "lumber mill"}],
   dimensions: {x: 8, y: 8}
 },
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
