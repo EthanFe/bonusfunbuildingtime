@@ -7,7 +7,7 @@ class GridRow extends Component {
     const tiles = []
     for (var x=0; x<this.props.width; x++) {
       const building = this.props.buildings.find(building => building.position.x === x)
-      tiles.push(<Tile x={x} building={building}></Tile>)
+      tiles.push(<Tile x={x} building={building} key={x}></Tile>)
     }
 
     return (

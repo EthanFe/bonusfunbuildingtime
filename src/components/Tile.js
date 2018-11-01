@@ -48,7 +48,7 @@ class Tile extends Component {
 }
 
 const mapStatetoProps = () => {
-  
+  return {}
 }
 
 const mapActionsToProps = {

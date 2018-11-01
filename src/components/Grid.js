@@ -6,7 +6,7 @@ class Grid extends Component {
   render() {
     const rows = []
     for (var y=0; y<this.props.height; y++) {
-      rows.push(<GridRow y={y}></GridRow>)
+      rows.push(<GridRow y={y} key={y}></GridRow>)
     }
 
     return (
