@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './components/styles.css';
 import MainView from "./components/MainView"
 
 import {bindActionCreators} from 'redux'

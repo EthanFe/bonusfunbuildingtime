@@ -1,0 +1,8 @@
+.row {
+  height: 64px;
+}
+
+.tile {
+  width: 64px;
+  height: 100%;
+}
