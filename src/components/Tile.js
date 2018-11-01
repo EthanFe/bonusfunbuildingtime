@@ -21,7 +21,7 @@ class Tile extends Component {
   }
 
   generateResource = () => {
-    this.props.addResources("stone", 1)
+    this.props.addResources(this.props.building.type, 1)
   }
 
   render() {
