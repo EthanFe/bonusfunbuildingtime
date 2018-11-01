@@ -14,11 +14,13 @@
 .tile {
   width: 64px;
   height: 100%;
+  border: 1px grey solid;
 }
 
 .building-icon {
   width: 128px;
   opacity: 0.5;
+  padding: 10px;
 }
 
 .building-icon.buildable {
