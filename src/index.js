@@ -10,7 +10,9 @@ import rootReducer from './reducers/reducers'
 
 const store = createStore(rootReducer, {
   resources: {stone: 3, wood: 5},
-  grid: {"0,1": "yes", "0,2": "no"}
+  buildings: [{position: {x: 1, y: 1}, type: "mine"},
+              {position: {x: 3, y: 4}, type: "lumber mill"}],
+  dimensions: {x: 8, y: 8}
 },
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

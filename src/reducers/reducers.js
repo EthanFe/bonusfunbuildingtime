@@ -3,7 +3,8 @@ import {ADD_RESOURCES} from '../actions/resources-actions'
 
 const rootReducer = combineReducers({
   resources: resourcesReducer,
-  grid: gridReducer
+  buildings: buildingsReducer,
+  dimensions: dimensionsReducer
 })
 
 function resourcesReducer(state = {}, { type, payload}) {
@@ -18,7 +19,11 @@ function resourcesReducer(state = {}, { type, payload}) {
   }
 }
 
-function gridReducer(state = {}, action) {
+function buildingsReducer(state = [], action) {
+  return state
+}
+
+function dimensionsReducer(state = {}, action) {
   return state
 }
 

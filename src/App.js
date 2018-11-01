@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Tile from "./components/Tile"
+import MainView from "./components/MainView"
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
@@ -14,25 +13,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <button onClick={this.onAddResources}>Add Stone</button>
-          Stone: {this.props.resources.stone}
-          <Tile></Tile>
-          <Tile></Tile>
-        </header>
-      </div>
+      <MainView/>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  resources: state.resources,
-  grid: state.grid
+  // resources: state.resources,
+  // grid: state.grid
 })
 
 const mapActionsToProps = (dispatch, {id }) => {
