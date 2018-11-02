@@ -15,3 +15,7 @@ export const group = (array, key) => {
     // eslint-disable-next-line
   }, new Object)
 }
+
+export const capitalize = (string) => {
+  return string[0].toUpperCase() + string.slice(1);
+}

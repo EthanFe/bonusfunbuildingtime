@@ -3,16 +3,30 @@ import {connect} from 'react-redux'
 import {buildingTypesByName} from '../data'
 import {selectBuilding} from '../actions/building-actions'
 import { isBuildable } from '../gameFunctions';
+import { capitalize } from '../funtimes';
 
 class Building extends Component {
   render() {
-    let image = buildingTypesByName[this.props.type].image
+    let image = this.buildingData().image
     let className = "building-icon"
     if (isBuildable(this.props.type, this.props.resources))
       className += " buildable"
     if (this.props.selected)
       className += " selected"
-    return <img onClick={this.selectBuilding} className={className} src={require(`../images/${image}.png`)} alt=""/>
+    return <img data-tip={this.getTooltip()} onClick={this.selectBuilding} className={className} src={require(`../images/${image}.png`)} alt=""/>
+  }
+
+  getTooltip = () => {
+    let tooltip = capitalize(this.props.type)
+    const costs = this.buildingData().cost
+    for (const resource in costs) {
+      tooltip += `<br>${resource} cost: ${costs[resource]}`
+    }
+    return tooltip
+  }
+
+  buildingData = () => {
+    return buildingTypesByName[this.props.type]
   }
 
   selectBuilding = () => {
