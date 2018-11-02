@@ -6,7 +6,7 @@ export default class BuildingList extends Component {
   render() {
     return (
       <div className="building-list">
-        {buildingTypes.map(buildingType => <Building type={buildingType.name}></Building>)}
+        {buildingTypes.map(buildingType => <Building type={buildingType.name} key={buildingType.name}></Building>)}
       </div>
     )
   }

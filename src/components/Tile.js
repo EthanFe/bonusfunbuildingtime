@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {buildingTypesByName} from '../data'
-import {addResources} from '../actions/resources-actions'
-import {removeMouseover} from '../actions/mouseover-actions'
-import {mouseOverTile} from '../actions/mouseover-actions'
+import {addResources, spendResources} from '../actions/resources-actions'
+import {removeMouseover, mouseOverTile} from '../actions/mouseover-actions'
+import {buildBuilding, selectBuilding} from '../actions/building-actions'
+import { isBuildable } from '../gameFunctions';
 
 class Tile extends Component {
   componentDidMount() {
@@ -20,7 +21,6 @@ class Tile extends Component {
 
   startResourceTicks = () => {
     this.gatherInterval = setInterval(this.generateResource, 1000)
-    console.log(`beginning to gather from ${this.props.building.type}`)
   }
 
   generateResource = () => {
@@ -36,7 +36,20 @@ class Tile extends Component {
       image = buildingTypesByName[this.props.selectedBuilding].image + "_grass"
       className += " building-ghost"
     }
-    return <img onMouseEnter={this.setMousedOver} onMouseLeave={this.removeMouseover} className={className} src={require(`../images/${image}.png`)} alt=""/>
+    return <img onClick={this.buildBuilding}
+                onMouseEnter={this.setMousedOver}
+                onMouseLeave={this.removeMouseover}
+                className={className}
+                src={require(`../images/${image}.png`)}
+                alt=""/>
+  }
+
+  buildBuilding = (event) => {
+    if (!this.props.building && this.props.selectedBuilding && isBuildable(this.props.selectedBuilding, this.props.resources)) {
+      this.props.buildBuilding(this.props.selectedBuilding, this.coords())
+      this.props.spendResources(this.props.selectedBuilding)
+      this.props.selectBuilding(null)
+    }
   }
 
   setMousedOver = (event) => {
@@ -48,7 +61,7 @@ class Tile extends Component {
   }
   
   coords = () => {
-    return `${this.props.x},${this.props.y}`
+    return {x: this.props.x, y: this.props.y}
   }
 }
 
@@ -57,15 +70,19 @@ const mapStateToProps = (state, props) => {
     building: state.buildings.find(building => {
       return building.position.y === props.y && building.position.x === props.x
     }),
-    mousedOver: state.mousedOverTile === `${props.x},${props.y}`,
-    selectedBuilding: state.selectedBuilding
+    mousedOver: state.mousedOverTile !== null && state.mousedOverTile.x === props.x && state.mousedOverTile.y === props.y,
+    selectedBuilding: state.selectedBuilding,
+    resources: state.resources
   }
 }
 
 const mapActionsToProps = {
   addResources: addResources,
   mouseOverTile: mouseOverTile,
-  removeMouseover: removeMouseover
+  removeMouseover: removeMouseover,
+  buildBuilding: buildBuilding,
+  spendResources: spendResources,
+  selectBuilding: selectBuilding
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Tile);
