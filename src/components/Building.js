@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {buildingTypesByName} from '../data'
 import {index} from '../funtimes'
+import {selectBuilding} from '../actions/building-actions'
 
 class Building extends Component {
   render() {
@@ -9,7 +10,9 @@ class Building extends Component {
     let className = "building-icon"
     if (this.isBuildable(this.props.type))
       className += " buildable"
-    return <img className={className} src={require(`../images/${image}.png`)} alt=""/>
+    if (this.props.selected)
+      className += " selected"
+    return <img onClick={this.selectBuilding} className={className} src={require(`../images/${image}.png`)} alt=""/>
   }
 
   isBuildable = (buildingType) => {
@@ -21,10 +24,20 @@ class Building extends Component {
     }
     return true
   }
+
+  selectBuilding = () => {
+    if (this.isBuildable(this.props.type))
+      this.props.selectBuilding(this.props.type)
+  }
 }
 
-const mapStateToProps = state => ({
-  resources: state.resources
+const mapStateToProps = (state, props) => ({
+  resources: state.resources,
+  selected: state.selectedBuilding === props.type
 })
 
-export default connect(mapStateToProps)(Building);
+const mapActionsToProps = {
+  selectBuilding: selectBuilding
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Building);

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {addResources} from '../actions/resources-actions'
 import {connect} from 'react-redux'
 import {buildingTypesByName} from '../data'
+import {addResources} from '../actions/resources-actions'
+import {removeMouseover} from '../actions/mouseover-actions'
+import {mouseOverTile} from '../actions/mouseover-actions'
 
 class Tile extends Component {
   componentDidMount() {
@@ -27,10 +29,26 @@ class Tile extends Component {
 
   render() {
     let image = "grass"
+    let className = "tile"
     if (this.props.building) {
       image = buildingTypesByName[this.props.building.type].image + "_grass"
+    } else if (this.props.mousedOver && this.props.selectedBuilding) {
+      image = buildingTypesByName[this.props.selectedBuilding].image + "_grass"
+      className += " building-ghost"
     }
-    return <img className="tile" src={require(`../images/${image}.png`)} alt=""/>
+    return <img onMouseEnter={this.setMousedOver} onMouseLeave={this.removeMouseover} className={className} src={require(`../images/${image}.png`)} alt=""/>
+  }
+
+  setMousedOver = (event) => {
+    this.props.mouseOverTile(this.coords())
+  }
+
+  removeMouseover = (event) => {
+    this.props.removeMouseover(this.coords())
+  }
+  
+  coords = () => {
+    return `${this.props.x},${this.props.y}`
   }
 }
 
@@ -38,12 +56,16 @@ const mapStateToProps = (state, props) => {
   return {
     building: state.buildings.find(building => {
       return building.position.y === props.y && building.position.x === props.x
-    })
+    }),
+    mousedOver: state.mousedOverTile === `${props.x},${props.y}`,
+    selectedBuilding: state.selectedBuilding
   }
 }
 
 const mapActionsToProps = {
-  addResources: addResources
+  addResources: addResources,
+  mouseOverTile: mouseOverTile,
+  removeMouseover: removeMouseover
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Tile);

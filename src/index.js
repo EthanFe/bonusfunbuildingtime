@@ -13,7 +13,9 @@ const store = createStore(rootReducer, {
   buildings: [{position: {x: 1, y: 1}, type: "mine"},
               {position: {x: 3, y: 4}, type: "lumber mill"},
               {position: {x: 5, y: 2}, type: "lumber mill"}],
-  dimensions: {x: 8, y: 8}
+  dimensions: {x: 8, y: 8},
+  selectedBuilding: null,
+  mousedOverTile: null
 },
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

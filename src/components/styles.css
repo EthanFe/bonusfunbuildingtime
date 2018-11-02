@@ -17,6 +17,10 @@
   border: 1px grey solid;
 }
 
+.tile.building-ghost {
+  opacity: 0.5;
+}
+
 .building-icon {
   width: 128px;
   opacity: 0.5;
@@ -25,4 +29,8 @@
 
 .building-icon.buildable {
   opacity: 1.0;
+}
+
+.building-icon.selected {
+  border: 5px green dotted;
 }
