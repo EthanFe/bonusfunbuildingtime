@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Resource extends Component {
   render() {
     return (
-      <div>{this.props.type}: {this.props.amount}</div>
+      <div data-tip={`ok this doesnt do anything but imagine if it showed income rates`}>{this.props.type}: {this.props.amount}</div>
     )
   }
 }

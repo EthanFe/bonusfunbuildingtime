@@ -19,20 +19,32 @@ class Tile extends Component {
   }
 
   startResourceTicks = () => {
-    this.gatherInterval = setInterval(this.generateResource, 1000)
+    this.productionIntervals = []
+    const productionData = buildingTypesByName[this.props.building.type].production
+    for (const producedResource in productionData) {
+      const resourceData = productionData[producedResource]
+      this.productionIntervals.push(setInterval(
+        () => this.generateResource(resourceData.resource, resourceData.amount),
+        resourceData.time * 1000))
+    }
   }
 
-  generateResource = () => {
-    this.props.addResources(this.props.building.type, 1)
+  generateResource = (resourceType, amount) => {
+    this.props.addResources(resourceType, amount)
   }
 
   render() {
     let image = "grass"
     let className = "tile"
     if (this.props.building) {
-      image = buildingTypesByName[this.props.building.type].image + "_grass"
+      image = buildingTypesByName[this.props.building.type].image
+      // this needs to die
+      if (this.props.building.type === "mine" || this.props.building.type === "mill")
+        image += "_grass"
     } else if (this.props.mousedOver && this.props.selectedBuilding) {
-      image = buildingTypesByName[this.props.selectedBuilding].image + "_grass"
+      image = buildingTypesByName[this.props.selectedBuilding].image
+      if (this.props.selectedBuilding === "mine" || this.props.selectedBuilding === "mill")
+        image += "_grass"
       className += " building-ghost"
     }
     return <img onClick={this.buildBuilding}

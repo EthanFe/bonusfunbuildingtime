@@ -1,15 +1,10 @@
 export const ADD_RESOURCES = 'resources:addResources'
 
-export function addResources(buildingType, amount) {
-  const buildingResources = {
-    "lumber mill": "wood",
-    "mine": "stone"
-  }
+export function addResources(resourceType, amount) {
   return {
-    
     type: ADD_RESOURCES,
     payload: {
-      resourceType: buildingResources[buildingType],
+      resourceType: resourceType,
       amount: amount
     }
   }
