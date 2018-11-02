@@ -39,11 +39,11 @@ class Tile extends Component {
     if (this.props.building) {
       image = buildingTypesByName[this.props.building.type].image
       // this needs to die
-      if (this.props.building.type === "mine" || this.props.building.type === "mill")
+      if (this.props.building.type === "mine" || this.props.building.type === "lumber mill")
         image += "_grass"
     } else if (this.props.mousedOver && this.props.selectedBuilding) {
       image = buildingTypesByName[this.props.selectedBuilding].image
-      if (this.props.selectedBuilding === "mine" || this.props.selectedBuilding === "mill")
+      if (this.props.selectedBuilding === "mine" || this.props.selectedBuilding === "lumber mill")
         image += "_grass"
       className += " building-ghost"
     }

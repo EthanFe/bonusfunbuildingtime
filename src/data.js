@@ -5,7 +5,7 @@ export const buildingTypes = [
   { name: "mine", image: "mine", cost: {stone: 15, wood: 35}, production: [{resource: "stone", time: 3, amount: 1}]},
   { name: "farm", image: "farm", cost: {stone: 15, wood: 35}, production: [{resource: "cow", time: 6, amount: 1}]},
   { name: "garden", image: "christmas_tree", cost: {stone: 15, wood: 35}, production: [{resource: "christmas tree", time: 5, amount: 1}]},
-  { name: "pool", image: "pond", cost: {stone: 15, wood: 35}, production: [{resource: "fish", rate: 1, amount: 1}]},
+  { name: "pool", image: "pond", cost: {stone: 15, wood: 35}, production: [{resource: "fish", time: 1, amount: 1}]},
   // { name: "burjkhalifa", image: "burjkhalifa", cost: {stone: 1000000, wood: 1000000}}
 ]
 
