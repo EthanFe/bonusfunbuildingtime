@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {buildingTypesByName} from '../data'
-import {addResources, spendResources} from '../actions/resources-actions'
+import {addResources} from '../actions/resources-actions'
 import {removeMouseover, mouseOverTile} from '../actions/mouseover-actions'
-import {buildBuilding, selectBuilding} from '../actions/building-actions'
-import { isBuildable } from '../gameFunctions';
+import {buildBuilding} from '../actions/building-actions'
 
 class Tile extends Component {
   componentDidMount() {
@@ -45,10 +44,8 @@ class Tile extends Component {
   }
 
   buildBuilding = (event) => {
-    if (!this.props.building && this.props.selectedBuilding && isBuildable(this.props.selectedBuilding, this.props.resources)) {
-      this.props.buildBuilding(this.props.selectedBuilding, this.coords())
-      this.props.spendResources(this.props.selectedBuilding)
-      this.props.selectBuilding(null)
+    if (!this.props.building && this.props.selectedBuilding) {
+      this.props.buildBuilding()
     }
   }
 
@@ -71,8 +68,7 @@ const mapStateToProps = (state, props) => {
       return building.position.y === props.y && building.position.x === props.x
     }),
     mousedOver: state.mousedOverTile !== null && state.mousedOverTile.x === props.x && state.mousedOverTile.y === props.y,
-    selectedBuilding: state.selectedBuilding,
-    resources: state.resources
+    selectedBuilding: state.selectedBuilding
   }
 }
 
@@ -80,9 +76,7 @@ const mapActionsToProps = {
   addResources: addResources,
   mouseOverTile: mouseOverTile,
   removeMouseover: removeMouseover,
-  buildBuilding: buildBuilding,
-  spendResources: spendResources,
-  selectBuilding: selectBuilding
+  buildBuilding: buildBuilding
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Tile);

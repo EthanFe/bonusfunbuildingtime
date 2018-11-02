@@ -12,8 +12,10 @@ class ResourceList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  resources: state.resources
-})
+const mapStateToProps = state => {
+  return {
+    resources: state.resources
+  }
+}
 
 export default connect(mapStateToProps)(ResourceList);

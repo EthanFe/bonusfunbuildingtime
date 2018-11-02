@@ -8,7 +8,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import rootReducer from './reducers/reducers'
 
-const store = createStore(rootReducer, {
+export const store = createStore(rootReducer, {
   resources: [{type: "stone", amount: 3}, {type: "wood", amount: 5}],
   buildings: [{position: {x: 1, y: 1}, type: "mine"},
               {position: {x: 3, y: 4}, type: "lumber mill"},

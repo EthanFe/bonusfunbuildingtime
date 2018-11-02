@@ -10,12 +10,11 @@ export function selectBuilding(buildingType) {
   }
 }
 
-export function buildBuilding(buildingType, position) {
+export function buildBuilding(position) {
   return {
     type: BUILD_BUILDING,
     payload: {
-      buildingType: buildingType,
-      position: position
+      
     }
   }
 }
