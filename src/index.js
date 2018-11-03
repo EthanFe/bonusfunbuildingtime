@@ -21,7 +21,8 @@ export const store = createStore(rootReducer, {
               {position: {x: 5, y: 2}, type: "lumber mill"}],
   dimensions: {x: 8, y: 8},
   selectedBuilding: null,
-  mousedOverTile: null
+  mousedOverTile: null,
+  recentlyGainedResources: []
 },
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

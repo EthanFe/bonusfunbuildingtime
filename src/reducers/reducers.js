@@ -1,4 +1,4 @@
-import {ADD_RESOURCES} from '../actions/resources-actions'
+import {ADD_RESOURCES, REMOVE_RESOURCE_FLOATY} from '../actions/resources-actions'
 import { SELECT_BUILDING, BUILD_BUILDING } from '../actions/building-actions';
 import { MOUSE_OVER_TILE, REMOVE_MOUSEOVER } from '../actions/mouseover-actions';
 import { isBuildable } from '../gameFunctions';
@@ -22,6 +22,13 @@ const rootReducer = (state = {}, {type, payload}) => {
   switch (type) {
     case ADD_RESOURCES:
       newState.resources.find(resource => resource.type === payload.resourceType).amount += payload.amount
+      newState.recentlyGainedResources.push({type: payload.resourceType,
+                                             origin: payload.productionSource,
+                                             amount: payload.amount,
+                                             timeGained: payload.productionTime})
+      return newState
+    case REMOVE_RESOURCE_FLOATY:
+      newState.recentlyGainedResources.splice(newState.recentlyGainedResources.indexOf(payload.floaty), 1)
       return newState
     case MOUSE_OVER_TILE:
       newState.mousedOverTile = payload.tileCoords

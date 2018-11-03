@@ -3,6 +3,7 @@ import Grid from "./Grid"
 import BuildingList from "./BuildingList"
 import ResourceList from "./ResourceList"
 import ReactTooltip from 'react-tooltip'
+import FloatiesContainer from './FloatiesContainer';
 
 export default class MainView extends Component {
   render() {
@@ -13,6 +14,7 @@ export default class MainView extends Component {
           <BuildingList/>
         </div>
         <ResourceList/>
+        <FloatiesContainer></FloatiesContainer>
         <ReactTooltip multiline={true} effect="solid" place="bottom" type="success" />
       </div>
     )

@@ -30,7 +30,7 @@ class Tile extends Component {
   }
 
   generateResource = (resourceType, amount) => {
-    this.props.addResources(resourceType, amount)
+    this.props.addResources(resourceType, amount, this.coords(), new Date().getTime())
   }
 
   render() {
