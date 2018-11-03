@@ -19,3 +19,13 @@ export const group = (array, key) => {
 export const capitalize = (string) => {
   return string[0].toUpperCase() + string.slice(1);
 }
+
+export const clone = (object) => {
+  return JSON.parse(JSON.stringify(object))
+  // const newObject = {}
+  // if (object instanceof Array ) {
+  //   object = [...object]
+  // } else {
+  //   object = {...object}
+  // }
+}

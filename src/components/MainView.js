@@ -13,7 +13,7 @@ export default class MainView extends Component {
           <BuildingList/>
         </div>
         <ResourceList/>
-        <ReactTooltip multiline="true" effect="solid" place="bottom" type="success" />
+        <ReactTooltip multiline={true} effect="solid" place="bottom" type="success" />
       </div>
     )
   }

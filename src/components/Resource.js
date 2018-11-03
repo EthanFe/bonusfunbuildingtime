@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 export default class Resource extends Component {
   render() {
-    return (
-      <div data-tip={`ok this doesnt do anything but imagine if it showed income rates`}>{this.props.type}: {this.props.amount}</div>
-    )
+    if (this.props.income)
+      return <div data-tip={`Income per second: ${Math.floor(this.props.income * 100) / 100}`}>{this.props.type}: {this.props.amount}</div>
+    else
+      return <div>{this.props.type}: {this.props.amount}</div>
   }
 }
