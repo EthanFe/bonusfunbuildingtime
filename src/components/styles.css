@@ -45,3 +45,11 @@
   width: 32px;
   height: 32px;
 }
+
+.save-button {
+  height: 100%;
+}
+
+.load-button {
+  height: 100%;
+}

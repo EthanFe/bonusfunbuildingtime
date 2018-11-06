@@ -19,7 +19,8 @@ class Tile extends Component {
   }
 
   startResourceTicks = () => {
-    this.productionIntervals = []
+    console.log(`starting to harvest resources from ${this.props.building.type}`)
+    this.resetProductionIntervals()
     const productionData = buildingTypesByName[this.props.building.type].production
     for (const producedResource in productionData) {
       const resourceData = productionData[producedResource]
@@ -27,6 +28,14 @@ class Tile extends Component {
         () => this.generateResource(resourceData.resource, resourceData.amount),
         resourceData.time * 1000))
     }
+  }
+
+  resetProductionIntervals = () => {
+    this.productionIntervals = this.productionIntervals || []
+    for (const interval of this.productionIntervals) {
+      clearInterval(interval)
+    }
+    this.productionIntervals = []
   }
 
   generateResource = (resourceType, amount) => {

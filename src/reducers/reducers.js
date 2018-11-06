@@ -3,6 +3,7 @@ import { SELECT_BUILDING, BUILD_BUILDING } from '../actions/building-actions';
 import { MOUSE_OVER_TILE, REMOVE_MOUSEOVER } from '../actions/mouseover-actions';
 import { isBuildable } from '../gameFunctions';
 import { buildingTypesByName } from '../data';
+import { LOAD_GAME } from '../actions/persistence-actions';
 
 const rootReducer = (state = {}, {type, payload}) => {
   const newState = {}
@@ -57,6 +58,13 @@ const rootReducer = (state = {}, {type, payload}) => {
         // deselect da building
         newState.selectedBuilding = null
       }
+      return newState
+    case LOAD_GAME:
+      newState.resources = payload.gameData.resources
+      newState.dimensions = payload.gameData.dimensions
+      newState.buildings = payload.gameData.buildings
+      newState.recentlyGainedResources = []
+      newState.selectedBuilding = null
       return newState
     default:
       return state
