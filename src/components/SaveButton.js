@@ -9,6 +9,7 @@ class SaveButton extends Component {
   }
 
   saveData = () => {
+    console.log(this.props)
     const base_url = "http://localhost:3000/"
     const url = base_url + "save"
 
