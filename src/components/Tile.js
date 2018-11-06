@@ -15,6 +15,8 @@ class Tile extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.building && this.props.building !== prevProps.building) {
       this.startResourceTicks()
+    } else if (prevProps.building !== null && this.props.building === undefined) {
+      this.resetProductionIntervals()
     }
   }
 
