@@ -35,7 +35,8 @@ const rootReducer = (state = {}, {type, payload}) => {
       newState.mousedOverTile = payload.tileCoords
       return newState
     case REMOVE_MOUSEOVER:
-      if (state.mousedOverTile === payload.tileCoords) {
+      if (state.mousedOverTile.x === payload.tileCoords.x &&
+          state.mousedOverTile.y === payload.tileCoords.y) {
         newState.mousedOverTile = null
         return newState
       } else {
