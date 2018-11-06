@@ -5,6 +5,6 @@ export default class Resource extends Component {
     if (this.props.income)
       return <div data-tip={`Income per second: ${Math.floor(this.props.income * 100) / 100}`}>{this.props.type}: {this.props.amount}</div>
     else
-      return <div>{this.props.type}: {this.props.amount}</div>
+      return <div data-tip=''>{this.props.type}: {this.props.amount}</div>
   }
 }
