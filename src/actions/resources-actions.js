@@ -1,14 +1,15 @@
 export const ADD_RESOURCES = 'resources:addResources'
 export const REMOVE_RESOURCE_FLOATY = 'resources:removeResourceFloaty'
 
-export function addResources(resourceType, amount, productionSource, productionTime) {
+export function addResources(resourceType, amount, productionSource, productionTime, totalResources) {
   return {
     type: ADD_RESOURCES,
     payload: {
       resourceType: resourceType,
       amount: amount,
       productionSource: productionSource,
-      productionTime: productionTime
+      productionTime: productionTime,
+      totalResources: totalResources
     }
   }
 }

@@ -22,7 +22,7 @@ const rootReducer = (state = {}, {type, payload}) => {
 
   switch (type) {
     case ADD_RESOURCES:
-      newState.resources.find(resource => resource.type === payload.resourceType).amount += payload.amount
+      newState.resources = payload.totalResources
       newState.recentlyGainedResources.push({type: payload.resourceType,
                                              origin: payload.productionSource,
                                              amount: payload.amount,

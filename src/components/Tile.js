@@ -21,6 +21,8 @@ class Tile extends Component {
   }
 
   startResourceTicks = () => {
+    // this is very elegant code
+    return
     // console.log(`starting to harvest resources from ${this.props.building.type}`)
     this.resetProductionIntervals()
     const productionData = buildingTypesByName[this.props.building.type].production
